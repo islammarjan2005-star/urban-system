@@ -1,0 +1,612 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3300" height="1800" viewBox="0 0 3300 1800">
+<defs>
+  <!-- ======================= GRADIENTS ======================= -->
+  <linearGradient id="gCanvas" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#F8EFE8"/>
+    <stop offset="0.5" stop-color="#F6EAE3"/>
+    <stop offset="1" stop-color="#F3E2DC"/>
+  </linearGradient>
+  <radialGradient id="gWashPink" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#F2CFCE" stop-opacity="0.65"/>
+    <stop offset="1" stop-color="#F2CFCE" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="gWashGold" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#EBC9AE" stop-opacity="0.5"/>
+    <stop offset="1" stop-color="#EBC9AE" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="gFrame" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#EFD3C2"/>
+    <stop offset="0.35" stop-color="#D3A085"/>
+    <stop offset="0.6" stop-color="#EFCfBC"/>
+    <stop offset="1" stop-color="#C08A66"/>
+  </linearGradient>
+  <linearGradient id="gScreen1" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FEFAF6"/>
+    <stop offset="0.55" stop-color="#F9E9E5"/>
+    <stop offset="1" stop-color="#F1D3D4"/>
+  </linearGradient>
+  <linearGradient id="gScreen2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FDF7F2"/>
+    <stop offset="1" stop-color="#F7E5E0"/>
+  </linearGradient>
+  <linearGradient id="gScreen3" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FDF8F3"/>
+    <stop offset="1" stop-color="#F9EAE4"/>
+  </linearGradient>
+  <linearGradient id="gScreen4" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F9E9E5"/>
+    <stop offset="1" stop-color="#EFCFD1"/>
+  </linearGradient>
+  <linearGradient id="gRose" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#D88FA0"/>
+    <stop offset="1" stop-color="#B5677D"/>
+  </linearGradient>
+  <linearGradient id="gRoseDeep" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#C57A8E"/>
+    <stop offset="1" stop-color="#9E5269"/>
+  </linearGradient>
+  <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#E3B196"/>
+    <stop offset="0.5" stop-color="#C98C6B"/>
+    <stop offset="1" stop-color="#E0AC8E"/>
+  </linearGradient>
+  <radialGradient id="gPearl" cx="0.38" cy="0.3" r="0.85">
+    <stop offset="0" stop-color="#FFFFFF"/>
+    <stop offset="0.45" stop-color="#FCF2EE"/>
+    <stop offset="0.75" stop-color="#F4E2E3"/>
+    <stop offset="1" stop-color="#ECD3D6"/>
+  </radialGradient>
+  <radialGradient id="gPearlIris" cx="0.35" cy="0.28" r="0.9">
+    <stop offset="0" stop-color="#FFFFFF"/>
+    <stop offset="0.5" stop-color="#F9EFF2"/>
+    <stop offset="0.78" stop-color="#EFE0EC"/>
+    <stop offset="1" stop-color="#E5CDD8"/>
+  </radialGradient>
+  <radialGradient id="gGlow" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.9"/>
+    <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="gPanelPearl" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFFDFB"/>
+    <stop offset="1" stop-color="#FBEEEA"/>
+  </linearGradient>
+  <linearGradient id="gCrescentNav" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#CE8194"/>
+    <stop offset="1" stop-color="#A75A70"/>
+  </linearGradient>
+
+  <!-- ======================= FILTERS ======================= -->
+  <filter id="fBig" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="22" stdDeviation="28" flood-color="#B97F8C" flood-opacity="0.28"/>
+  </filter>
+  <filter id="fSoft" x="-60%" y="-60%" width="220%" height="220%">
+    <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#C28E9A" flood-opacity="0.30"/>
+  </filter>
+  <filter id="fTiny" x="-80%" y="-80%" width="260%" height="260%">
+    <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#C28E9A" flood-opacity="0.28"/>
+  </filter>
+  <filter id="fBlur18"><feGaussianBlur stdDeviation="18"/></filter>
+  <filter id="fBlur40" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="40"/></filter>
+
+  <!-- ======================= SYMBOLS ======================= -->
+  <!-- 8-point Islamic star (Rub el Hizb: two overlapping squares), radius ~1 -->
+  <path id="star8" d="M-0.65,-0.65 L0.65,-0.65 L0.65,0.65 L-0.65,0.65 Z M0,-0.92 L0.92,0 L0,0.92 L-0.92,0 Z"/>
+  <!-- petal, unit -->
+  <path id="petal" d="M0,-1 C0.58,-0.78 0.78,-0.12 0.46,0.5 C0.26,0.88 -0.26,0.88 -0.46,0.5 C-0.78,-0.12 -0.58,-0.78 0,-1 Z"/>
+  <!-- crescent opening to upper-right -->
+  <path id="crescent" d="M0.4,-0.92 A1,1 0 1,0 0.92,0.4 A0.74,0.74 0 1,1 0.4,-0.92 Z"/>
+  <!-- four-petal flower -->
+  <g id="flower4">
+    <use href="#petal" transform="translate(0,-0.62) scale(0.6)"/>
+    <use href="#petal" transform="rotate(90) translate(0,-0.62) scale(0.6)"/>
+    <use href="#petal" transform="rotate(180) translate(0,-0.62) scale(0.6)"/>
+    <use href="#petal" transform="rotate(270) translate(0,-0.62) scale(0.6)"/>
+  </g>
+  <!-- floral sprig: stem + leaves + bud (about 120 long, grows up) -->
+  <g id="sprig" fill="none" stroke="#C98C6B" stroke-width="2.4" stroke-linecap="round">
+    <path d="M0,0 C8,-34 -6,-66 4,-104"/>
+    <path d="M2,-26 C20,-30 30,-44 32,-60 C16,-56 4,-44 2,-26 Z" fill="#E9BFB4" stroke="none"/>
+    <path d="M-1,-52 C-19,-56 -29,-70 -31,-86 C-15,-82 -3,-70 -1,-52 Z" fill="#E9BFB4" stroke="none"/>
+    <circle cx="4" cy="-112" r="7" fill="#D88FA0" stroke="none"/>
+    <circle cx="14" cy="-122" r="4" fill="#E6B0A6" stroke="none"/>
+  </g>
+  <!-- diamond ornament -->
+  <path id="diamond" d="M0,-1 L0.62,0 L0,1 L-0.62,0 Z"/>
+
+  <!-- =================== LINE ICONS (48x48 box, centered 0,0) =================== -->
+  <g id="icoArch" fill="none" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-14,16 L-14,-2 C-14,-14 -6,-21 0,-24 C6,-21 14,-14 14,-2 L14,16 Z"/>
+    <path d="M-21,16 L21,16"/>
+  </g>
+  <g id="icoBook" fill="none" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0,-12 C-6,-17 -14,-18 -20,-16 L-20,12 C-14,10 -6,11 0,16 C6,11 14,10 20,12 L20,-16 C14,-18 6,-17 0,-12 Z"/>
+    <path d="M0,-12 L0,16"/>
+  </g>
+  <g id="icoBeads" fill="none" stroke-width="3" stroke-linecap="round">
+    <path d="M-18,10 C-10,-6 10,-6 18,10" stroke-dasharray="0.1 9"/>
+    <circle cx="-18" cy="10" r="5.5"/>
+    <circle cx="0" cy="-2" r="5.5"/>
+    <circle cx="18" cy="10" r="5.5"/>
+  </g>
+  <g id="icoDua" fill="none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-16,-6 C-18,6 -10,15 0,17 C10,15 18,6 16,-6"/>
+    <path d="M-16,-6 C-12,-2 -6,0 0,0 C6,0 12,-2 16,-6"/>
+    <path d="M0,-18 L0,-13 M-5,-16 L-2.5,-12 M5,-16 L2.5,-12"/>
+  </g>
+  <g id="icoHeart" fill="none" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0,14 C-16,4 -20,-6 -14,-13 C-9,-18 -2,-16 0,-10 C2,-16 9,-18 14,-13 C20,-6 16,4 0,14 Z"/>
+  </g>
+  <g id="icoMoonline" fill="none" stroke-width="3.4" stroke-linecap="round">
+    <path d="M5,-16 A17,17 0 1,0 16,5 A13.5,13.5 0 1,1 5,-16 Z"/>
+  </g>
+  <g id="icoSearch" fill="none" stroke-width="3.4" stroke-linecap="round">
+    <circle cx="-3" cy="-3" r="11"/>
+    <path d="M6,6 L16,16"/>
+  </g>
+  <g id="icoPlay" stroke="none">
+    <path d="M-7,-12 L13,0 L-7,12 Z"/>
+  </g>
+  <g id="icoBookmark" fill="none" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-11,-16 L11,-16 L11,16 L0,7 L-11,16 Z"/>
+  </g>
+  <g id="icoShare" fill="none" stroke-width="3.2" stroke-linecap="round">
+    <circle cx="-11" cy="0" r="5"/>
+    <circle cx="11" cy="-11" r="5"/>
+    <circle cx="11" cy="11" r="5"/>
+    <path d="M-6.5,-2.5 L6.5,-8.5 M-6.5,2.5 L6.5,8.5"/>
+  </g>
+  <g id="icoGrid" fill="none" stroke-width="3.2" stroke-linecap="round">
+    <circle cx="-9" cy="-9" r="4.5"/><circle cx="9" cy="-9" r="4.5"/>
+    <circle cx="-9" cy="9" r="4.5"/><circle cx="9" cy="9" r="4.5"/>
+  </g>
+  <g id="icoSun" fill="none" stroke-width="3" stroke-linecap="round">
+    <circle cx="0" cy="0" r="8"/>
+    <path d="M0,-16 L0,-12 M0,12 L0,16 M-16,0 L-12,0 M12,0 L16,0 M-11.5,-11.5 L-8.5,-8.5 M8.5,8.5 L11.5,11.5 M11.5,-11.5 L8.5,-8.5 M-8.5,8.5 L-11.5,11.5"/>
+  </g>
+
+  <!-- screen clip (local phone coords) -->
+  <clipPath id="screenClip"><rect x="10" y="10" width="660" height="1452" rx="92"/></clipPath>
+</defs>
+
+<!-- ============================================================= -->
+<!-- =======================  CANVAS  ============================ -->
+<!-- ============================================================= -->
+<rect width="3300" height="1800" fill="url(#gCanvas)"/>
+<ellipse cx="330" cy="200" rx="700" ry="520" fill="url(#gWashPink)"/>
+<ellipse cx="3050" cy="1650" rx="820" ry="560" fill="url(#gWashPink)"/>
+<ellipse cx="1700" cy="1750" rx="900" ry="420" fill="url(#gWashGold)"/>
+<ellipse cx="2900" cy="120" rx="640" ry="420" fill="url(#gWashGold)"/>
+<g fill="none" stroke="#C98C6B" stroke-opacity="0.10" stroke-width="2.5">
+  <use href="#star8" transform="translate(170,1620) scale(190)" stroke-width="0.012"/>
+  <use href="#star8" transform="translate(3160,330) scale(230) rotate(22)" stroke-width="0.011"/>
+  <use href="#star8" transform="translate(1650,90) scale(120)" stroke-width="0.02"/>
+</g>
+<g fill="#DFA9A8" opacity="0.4">
+  <use href="#petal" transform="translate(835,210) scale(26) rotate(35)"/>
+  <use href="#petal" transform="translate(2452,1560) scale(30) rotate(-130)"/>
+  <use href="#petal" transform="translate(1632,1690) scale(20) rotate(80)"/>
+  <use href="#petal" transform="translate(3210,900) scale(22) rotate(-40)"/>
+  <use href="#petal" transform="translate(70,860) scale(24) rotate(150)"/>
+</g>
+
+<!-- ============================================================= -->
+<!-- ================  SCREEN 1 · WELCOME  ======================= -->
+<!-- ============================================================= -->
+<g transform="translate(110,164)">
+  <rect x="0" y="0" width="680" height="1472" rx="100" fill="url(#gFrame)" filter="url(#fBig)"/>
+  <rect x="6" y="6" width="668" height="1460" rx="96" fill="#FFFDFB"/>
+  <g clip-path="url(#screenClip)">
+    <rect x="10" y="10" width="660" height="1452" fill="url(#gScreen1)"/>
+
+    <!-- faint geometry -->
+    <g fill="none" stroke="#C98C6B" stroke-opacity="0.13">
+      <use href="#star8" transform="translate(95,330) scale(64)" stroke-width="0.03"/>
+      <use href="#star8" transform="translate(610,560) scale(44) rotate(20)" stroke-width="0.045"/>
+      <use href="#star8" transform="translate(120,1120) scale(50) rotate(10)" stroke-width="0.04"/>
+    </g>
+
+    <!-- layered translucent mihrab arches -->
+    <path d="M150,1060 L150,640 C150,430 240,320 340,260 C440,320 530,430 530,640 L530,1060 Z" fill="#FFFFFF" opacity="0.38"/>
+    <path d="M185,1060 L185,655 C185,470 260,365 340,310 C420,365 495,470 495,655 L495,1060 Z" fill="none" stroke="url(#gGold)" stroke-width="2.4" opacity="0.6"/>
+    <path d="M218,1060 L218,668 C218,500 278,402 340,356 C402,402 462,500 462,668 L462,1060 Z" fill="none" stroke="#D9A6A8" stroke-width="1.6" opacity="0.55"/>
+
+    <!-- hanging ornament -->
+    <g stroke="#C98C6B" stroke-width="2" fill="none" opacity="0.85">
+      <path d="M120,10 L120,300"/>
+      <path d="M120,300 L138,330 L120,360 L102,330 Z" fill="#E9C2B4" stroke-width="1.8"/>
+      <path d="M120,360 L120,392 M112,360 L109,386 M128,360 L131,386"/>
+    </g>
+    <circle cx="120" cy="330" r="6" fill="#B5677D"/>
+
+    <!-- crescent + sparkles -->
+    <use href="#crescent" transform="translate(575,235) scale(40) rotate(18)" fill="url(#gGold)" filter="url(#fTiny)"/>
+    <g fill="#C98C6B" opacity="0.8">
+      <use href="#diamond" transform="translate(516,180) scale(7,10)"/>
+      <use href="#diamond" transform="translate(626,310) scale(5,8)"/>
+      <use href="#diamond" transform="translate(560,330) scale(4,6)"/>
+    </g>
+
+    <!-- floating petals -->
+    <g filter="url(#fTiny)">
+      <use href="#petal" transform="translate(96,500) scale(20) rotate(-30)" fill="#F2C6CB"/>
+      <use href="#petal" transform="translate(590,700) scale(16) rotate(120)" fill="#EFBFC0"/>
+      <use href="#petal" transform="translate(76,760) scale(13) rotate(70)" fill="#F6D9D4"/>
+      <use href="#petal" transform="translate(615,935) scale(18) rotate(-100)" fill="#F2CCC6"/>
+    </g>
+
+    <!-- status bar -->
+    <text x="64" y="78" font-family="Jost" font-weight="500" font-size="26" fill="#9A6A72">9:41</text>
+    <g fill="#9A6A72" opacity="0.9">
+      <rect x="530" y="66" width="5" height="12" rx="2.5"/>
+      <rect x="539" y="62" width="5" height="16" rx="2.5"/>
+      <rect x="548" y="58" width="5" height="20" rx="2.5"/>
+      <rect x="557" y="54" width="5" height="24" rx="2.5"/>
+      <rect x="572" y="58" width="40" height="20" rx="10" fill="none" stroke="#9A6A72" stroke-width="2.4"/>
+      <rect x="576" y="62" width="24" height="12" rx="6"/>
+    </g>
+
+    <!-- vertical label -->
+    <text transform="translate(52,930) rotate(-90)" font-family="Jost" font-weight="500" font-size="19" letter-spacing="9" fill="#C2939B">A SANCTUARY OF LIGHT</text>
+
+    <!-- bismillah -->
+    <text x="340" y="430" text-anchor="middle" font-family="Amiri" font-size="34" fill="#B06A7D">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</text>
+
+    <!-- wordmark -->
+    <text x="340" y="640" text-anchor="middle" font-family="Cormorant Garamond" font-weight="500" font-size="168" fill="#6E4350">Asma</text>
+    <text x="340" y="712" text-anchor="middle" font-family="Amiri" font-size="44" fill="#C08A66">أَسْمَاء</text>
+
+    <!-- ornament divider -->
+    <g stroke="#C98C6B" stroke-width="1.8" opacity="0.9">
+      <path d="M210,760 L310,760 M370,760 L470,760" fill="none"/>
+      <use href="#diamond" transform="translate(340,760) scale(9,12)" fill="#C98C6B" stroke="none"/>
+    </g>
+
+    <!-- subtitle -->
+    <text x="340" y="816" text-anchor="middle" font-family="Jost" font-weight="500" font-size="22" letter-spacing="7.5" fill="#A85D6E">QURAN &amp; SUNNAH FOR WOMEN</text>
+
+    <!-- poetic line -->
+    <text x="340" y="906" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="33" fill="#8A5B66">Enter softly — your heart</text>
+    <text x="340" y="950" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="33" fill="#8A5B66">already knows the way.</text>
+
+    <!-- overlapping translucent ground panels -->
+    <path d="M-40,1240 C160,1130 420,1330 720,1190 L720,1480 L-40,1480 Z" fill="#FFFFFF" opacity="0.35"/>
+    <path d="M-40,1330 C220,1230 460,1420 720,1300 L720,1480 L-40,1480 Z" fill="#F4CFD2" opacity="0.5"/>
+
+    <!-- CTA petal capsule -->
+    <g filter="url(#fSoft)">
+      <path d="M156,1106 C156,1078 180,1060 212,1060 L478,1060 C516,1060 532,1086 524,1112 C518,1134 498,1152 462,1152 L196,1152 C168,1152 156,1130 156,1106 Z" fill="url(#gRoseDeep)"/>
+    </g>
+    <text x="320" y="1116" text-anchor="middle" font-family="Jost" font-weight="500" font-size="27" letter-spacing="3.5" fill="#FFF6F1">Begin your journey</text>
+    <use href="#crescent" transform="translate(484,1106) scale(16) rotate(18)" fill="#FFE9DC"/>
+
+    <!-- secondary -->
+    <text x="340" y="1226" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="29" fill="#A4707C">I have walked here before</text>
+    <path d="M236,1244 L444,1244" stroke="#C99AA2" stroke-width="1.6" stroke-dasharray="1 7" stroke-linecap="round"/>
+
+    <use href="#star8" transform="translate(340,1330) scale(13)" fill="#C98C6B" opacity="0.85"/>
+  </g>
+</g>
+
+<!-- ============================================================= -->
+<!-- ==================  SCREEN 2 · HOME  ======================== -->
+<!-- ============================================================= -->
+<g transform="translate(910,164)">
+  <rect x="0" y="0" width="680" height="1472" rx="100" fill="url(#gFrame)" filter="url(#fBig)"/>
+  <rect x="6" y="6" width="668" height="1460" rx="96" fill="#FFFDFB"/>
+  <g clip-path="url(#screenClip)">
+    <rect x="10" y="10" width="660" height="1452" fill="url(#gScreen2)"/>
+
+    <!-- faint geometry / petals -->
+    <use href="#star8" transform="translate(640,420) scale(120)" fill="none" stroke="#C98C6B" stroke-opacity="0.1" stroke-width="0.02"/>
+    <use href="#petal" transform="translate(80,1240) scale(20) rotate(40)" fill="#EFC3C6" opacity="0.55"/>
+    <use href="#petal" transform="translate(625,1010) scale(15) rotate(-70)" fill="#EFC3C6" opacity="0.5"/>
+
+    <!-- status bar -->
+    <text x="64" y="78" font-family="Jost" font-weight="500" font-size="26" fill="#9A6A72">9:41</text>
+    <g fill="#9A6A72" opacity="0.9">
+      <rect x="539" y="62" width="5" height="16" rx="2.5"/>
+      <rect x="548" y="58" width="5" height="20" rx="2.5"/>
+      <rect x="557" y="54" width="5" height="24" rx="2.5"/>
+      <rect x="572" y="58" width="40" height="20" rx="10" fill="none" stroke="#9A6A72" stroke-width="2.4"/>
+      <rect x="576" y="62" width="24" height="12" rx="6"/>
+    </g>
+
+    <!-- greeting -->
+    <text x="64" y="186" font-family="Cormorant Garamond" font-style="italic" font-size="36" fill="#9A6A72">Assalamu alaikum,</text>
+    <text x="64" y="252" font-family="Cormorant Garamond" font-weight="500" font-size="68" fill="#6E4350">Maryam</text>
+    <text x="64" y="296" font-family="Jost" font-weight="500" font-size="18" letter-spacing="4.5" fill="#C2939B">RABI’ AL-AWWAL 14 · FAJR 5:12</text>
+
+    <!-- progress moon-ring (floating island, overlaps edge) -->
+    <g filter="url(#fSoft)">
+      <circle cx="556" cy="318" r="96" fill="url(#gPearlIris)"/>
+    </g>
+    <circle cx="556" cy="318" r="74" fill="none" stroke="#EFD8D4" stroke-width="9"/>
+    <circle cx="556" cy="318" r="74" fill="none" stroke="url(#gGold)" stroke-width="9" stroke-linecap="round"
+            stroke-dasharray="288 465" transform="rotate(-90 556 318)"/>
+    <text x="556" y="318" text-anchor="middle" font-family="Cormorant Garamond" font-weight="500" font-size="52" fill="#6E4350">62%</text>
+    <text x="556" y="352" text-anchor="middle" font-family="Jost" font-size="16" letter-spacing="3" fill="#B06A7D">TODAY’S NUR</text>
+    <use href="#crescent" transform="translate(556,232) scale(12) rotate(18)" fill="#C98C6B"/>
+
+    <!-- translucent backdrop panel for the path -->
+    <path d="M120,430 C-60,640 760,760 540,980 C400,1120 660,1180 580,1320 L60,1320 C-20,1140 200,1080 120,900 C60,760 240,620 120,430 Z" fill="#FFFFFF" opacity="0.28"/>
+
+    <!-- the flowing pearl path -->
+    <path id="homePath" d="M340,398 C150,520 130,640 210,724 C300,820 520,790 520,920 C520,1040 300,1020 250,1120 C210,1200 300,1280 360,1330" fill="none" stroke="#FFFFFF" stroke-width="26" opacity="0.55"/>
+    <path d="M340,398 C150,520 130,640 210,724 C300,820 520,790 520,920 C520,1040 300,1020 250,1120 C210,1200 300,1280 360,1330" fill="none" stroke="url(#gGold)" stroke-width="6" stroke-linecap="round" stroke-dasharray="0.1 20"/>
+
+    <!-- node 1 · QURAN (petal island, left) -->
+    <g filter="url(#fSoft)">
+      <path d="M210,560 C300,548 366,596 370,672 C374,748 308,800 226,792 C144,784 96,716 116,646 C132,590 164,566 210,560 Z" fill="url(#gPearl)"/>
+    </g>
+    <text x="356" y="644" text-anchor="end" font-family="Amiri" font-size="44" fill="#E3BCC0" opacity="0.85">القرآن</text>
+    <use href="#icoBook" transform="translate(160,640)" stroke="#B06A7D"/>
+    <text x="146" y="712" font-family="Cormorant Garamond" font-weight="500" font-size="44" fill="#6E4350">Quran</text>
+    <text x="146" y="748" font-family="Jost" font-size="18" letter-spacing="2" fill="#A9747F">Continue Al-Kahf · Juz 15</text>
+    <circle cx="210" cy="724" r="11" fill="#C98C6B" stroke="#FFF7F1" stroke-width="4"/>
+
+    <!-- node 2 · SUNNAH (circle, right) -->
+    <g filter="url(#fSoft)"><circle cx="508" cy="900" r="92" fill="#F7DCDC" fill-opacity="0.92"/></g>
+    <circle cx="508" cy="900" r="92" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.8"/>
+    <use href="#icoHeart" transform="translate(508,862)" stroke="#A85D6E"/>
+    <text x="508" y="922" text-anchor="middle" font-family="Cormorant Garamond" font-weight="500" font-size="40" fill="#6E4350">Sunnah</text>
+    <text x="508" y="954" text-anchor="middle" font-family="Jost" font-size="17" letter-spacing="2" fill="#A9747F">3 pearls today</text>
+    <circle cx="520" cy="920" r="0" fill="none"/>
+
+    <!-- node 3 · DUAS (petal, left-low) -->
+    <g filter="url(#fSoft)">
+      <use href="#petal" transform="translate(232,1120) scale(108) rotate(214)" fill="url(#gPearlIris)"/>
+    </g>
+    <use href="#icoDua" transform="translate(218,1078)" stroke="#B06A7D"/>
+    <text x="220" y="1140" text-anchor="middle" font-family="Cormorant Garamond" font-weight="500" font-size="40" fill="#6E4350">Duas</text>
+    <text x="220" y="1172" text-anchor="middle" font-family="Jost" font-size="17" letter-spacing="2" fill="#A9747F">for the morning</text>
+
+    <!-- node 4 · DHIKR (small bead circle, right-low) -->
+    <g filter="url(#fSoft)"><circle cx="520" cy="1190" r="74" fill="url(#gPearl)"/></g>
+    <circle cx="520" cy="1190" r="74" fill="none" stroke="#D9A6A8" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+    <use href="#icoBeads" transform="translate(520,1162)" stroke="#B06A7D"/>
+    <text x="520" y="1210" text-anchor="middle" font-family="Cormorant Garamond" font-weight="500" font-size="36" fill="#6E4350">Dhikr</text>
+    <text x="520" y="1240" text-anchor="middle" font-family="Jost" font-size="16" letter-spacing="2" fill="#A9747F">33 of 99</text>
+
+    <!-- small bead markers on path -->
+    <circle cx="340" cy="398" r="9" fill="#C98C6B"/>
+    <circle cx="520" cy="920" r="0" fill="none"/>
+    <circle cx="360" cy="1330" r="9" fill="#C98C6B"/>
+
+    <!-- vertical label right -->
+    <text transform="translate(642,1060) rotate(90)" text-anchor="middle" font-family="Jost" font-weight="500" font-size="18" letter-spacing="8" fill="#C2939B">YOUR PATH TODAY</text>
+
+    <!-- crescent navigation -->
+    <g filter="url(#fSoft)">
+      <path d="M60,1480 C120,1330 560,1330 620,1480 L620,1490 L60,1490 Z" fill="url(#gCrescentNav)"/>
+    </g>
+    <path d="M88,1462 C160,1352 520,1352 592,1462" fill="none" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2"/>
+    <use href="#icoArch" transform="translate(170,1428) scale(0.92)" stroke="#FFE9E2"/>
+    <use href="#icoBook" transform="translate(285,1404) scale(0.92)" stroke="#FAD3CD"/>
+    <use href="#icoDua" transform="translate(395,1404) scale(0.92)" stroke="#FAD3CD"/>
+    <use href="#icoMoonline" transform="translate(510,1428) scale(0.92)" stroke="#FAD3CD"/>
+    <circle cx="170" cy="1466" r="4.5" fill="#FFE9E2"/>
+  </g>
+</g>
+
+<!-- ============================================================= -->
+<!-- ================  SCREEN 3 · QURAN BEADS  =================== -->
+<!-- ============================================================= -->
+<g transform="translate(1710,164)">
+  <rect x="0" y="0" width="680" height="1472" rx="100" fill="url(#gFrame)" filter="url(#fBig)"/>
+  <rect x="6" y="6" width="668" height="1460" rx="96" fill="#FFFDFB"/>
+  <g clip-path="url(#screenClip)">
+    <rect x="10" y="10" width="660" height="1452" fill="url(#gScreen3)"/>
+
+    <!-- giant faint star -->
+    <use href="#star8" transform="translate(40,260) scale(260)" fill="none" stroke="#C98C6B" stroke-opacity="0.09" stroke-width="0.01"/>
+    <use href="#petal" transform="translate(630,1180) scale(18) rotate(-60)" fill="#EFC3C6" opacity="0.5"/>
+
+    <!-- status bar -->
+    <text x="64" y="78" font-family="Jost" font-weight="500" font-size="26" fill="#9A6A72">9:41</text>
+    <g fill="#9A6A72" opacity="0.9">
+      <rect x="539" y="62" width="5" height="16" rx="2.5"/>
+      <rect x="548" y="58" width="5" height="20" rx="2.5"/>
+      <rect x="557" y="54" width="5" height="24" rx="2.5"/>
+      <rect x="572" y="58" width="40" height="20" rx="10" fill="none" stroke="#9A6A72" stroke-width="2.4"/>
+      <rect x="576" y="62" width="24" height="12" rx="6"/>
+    </g>
+
+    <!-- title block, right aligned -->
+    <text x="616" y="172" text-anchor="end" font-family="Amiri" font-size="44" fill="#C08A66">القرآن الكريم</text>
+    <text x="616" y="262" text-anchor="end" font-family="Cormorant Garamond" font-weight="500" font-size="92" fill="#6E4350">Quran</text>
+    <text x="616" y="302" text-anchor="end" font-family="Jost" font-size="19" letter-spacing="4" fill="#B58791">114 SURAHS · A STRAND OF PEARLS</text>
+
+    <!-- vertical label left -->
+    <text transform="translate(50,820) rotate(-90)" text-anchor="middle" font-family="Jost" font-weight="500" font-size="18" letter-spacing="8" fill="#C2939B">SURAH ATLAS</text>
+
+    <!-- thread (double line) -->
+    <path d="M110,330 C90,470 220,520 330,560 C470,610 480,700 380,760 C260,832 170,860 180,960 C192,1068 420,1050 470,1140 C512,1216 420,1280 350,1330" fill="none" stroke="#D8AE93" stroke-width="3"/>
+    <path d="M116,326 C98,462 226,512 336,552 C476,602 488,696 388,754 C268,826 178,856 188,956 C200,1062 428,1044 478,1134 C520,1212 428,1276 356,1326" fill="none" stroke="#E9CDB8" stroke-width="1.6"/>
+
+    <!-- spacer beads -->
+    <g fill="#E2BBA4">
+      <circle cx="208" cy="514" r="9"/><circle cx="266" cy="536" r="9"/>
+      <circle cx="436" cy="600" r="9"/><circle cx="452" cy="676" r="9"/>
+      <circle cx="300" cy="806" r="9"/><circle cx="240" cy="832" r="9"/>
+      <circle cx="182" cy="1010" r="9"/><circle cx="230" cy="1036" r="9"/>
+      <circle cx="436" cy="1106" r="9"/><circle cx="488" cy="1166" r="9"/>
+    </g>
+
+    <!-- ====== SURAH PEARLS ====== -->
+    <!-- 1 Al-Fatihah -->
+    <g filter="url(#fSoft)"><circle cx="124" cy="408" r="76" fill="url(#gPearl)"/></g>
+    <ellipse cx="100" cy="380" rx="26" ry="16" fill="#FFFFFF" opacity="0.8" transform="rotate(-30 100 380)"/>
+    <text x="124" y="398" text-anchor="middle" font-family="Amiri" font-size="38" fill="#6E4350">الفاتحة</text>
+    <text x="124" y="442" text-anchor="middle" font-family="Jost" font-size="17" letter-spacing="1.5" fill="#B06A7D">1 · 7 AYAT</text>
+    <path d="M204,392 L268,372" stroke="#C99AA2" stroke-width="1.5"/>
+    <text x="276" y="366" font-family="Cormorant Garamond" font-weight="500" font-size="38" fill="#6E4350">Al-Fatihah</text>
+    <text x="276" y="396" font-family="Cormorant Garamond" font-style="italic" font-size="24" fill="#A9747F">The Opening</text>
+
+    <!-- 2 Al-Baqarah -->
+    <g filter="url(#fSoft)"><circle cx="356" cy="566" r="62" fill="url(#gPearlIris)"/></g>
+    <ellipse cx="336" cy="544" rx="20" ry="12" fill="#FFFFFF" opacity="0.8" transform="rotate(-30 336 544)"/>
+    <text x="356" y="560" text-anchor="middle" font-family="Amiri" font-size="30" fill="#6E4350">البقرة</text>
+    <text x="356" y="598" text-anchor="middle" font-family="Jost" font-size="15" letter-spacing="1.5" fill="#B06A7D">2 · 286</text>
+    <path d="M408,526 L444,500" stroke="#C99AA2" stroke-width="1.5"/>
+    <text x="452" y="494" font-family="Cormorant Garamond" font-weight="500" font-size="34" fill="#6E4350">Al-Baqarah</text>
+    <text x="452" y="522" font-family="Cormorant Garamond" font-style="italic" font-size="22" fill="#A9747F">The Heifer</text>
+
+    <!-- 18 Al-Kahf — current -->
+    <g filter="url(#fSoft)"><circle cx="368" cy="772" r="92" fill="url(#gPearl)"/></g>
+    <circle cx="368" cy="772" r="106" fill="none" stroke="url(#gGold)" stroke-width="3" stroke-dasharray="3 12" stroke-linecap="round"/>
+    <ellipse cx="338" cy="738" rx="30" ry="18" fill="#FFFFFF" opacity="0.85" transform="rotate(-30 338 738)"/>
+    <text x="368" y="762" text-anchor="middle" font-family="Amiri" font-size="44" fill="#6E4350">الكهف</text>
+    <text x="368" y="808" text-anchor="middle" font-family="Jost" font-size="17" letter-spacing="1.5" fill="#B06A7D">18 · 110 AYAT</text>
+    <g filter="url(#fTiny)">
+      <path d="M446,696 C446,678 462,666 482,666 L544,666 C566,666 578,682 572,700 C568,714 554,724 532,724 L470,724 C454,724 446,712 446,696 Z" fill="url(#gRoseDeep)"/>
+    </g>
+    <text x="510" y="704" text-anchor="middle" font-family="Jost" font-weight="500" font-size="19" letter-spacing="1" fill="#FFF3EE">Resume</text>
+    <text x="368" y="922" text-anchor="middle" font-family="Cormorant Garamond" font-weight="500" font-size="36" fill="#6E4350">Al-Kahf</text>
+    <text x="368" y="950" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="22" fill="#A9747F">The Cave · 18:10</text>
+
+    <!-- 36 Ya-Sin -->
+    <g filter="url(#fSoft)"><circle cx="196" cy="980" r="58" fill="url(#gPearlIris)"/></g>
+    <ellipse cx="178" cy="960" rx="18" ry="11" fill="#FFFFFF" opacity="0.8" transform="rotate(-30 178 960)"/>
+    <text x="196" y="976" text-anchor="middle" font-family="Amiri" font-size="30" fill="#6E4350">يس</text>
+    <text x="196" y="1010" text-anchor="middle" font-family="Jost" font-size="15" letter-spacing="1.5" fill="#B06A7D">36 · 83</text>
+    <path d="M140,1006 L96,1042" stroke="#C99AA2" stroke-width="1.5"/>
+    <text x="86" y="1078" font-family="Cormorant Garamond" font-weight="500" font-size="34" fill="#6E4350">Ya-Sin</text>
+    <text x="86" y="1106" font-family="Cormorant Garamond" font-style="italic" font-size="22" fill="#A9747F">The Heart</text>
+
+    <!-- 55 Ar-Rahman -->
+    <g filter="url(#fSoft)"><circle cx="478" cy="1112" r="66" fill="url(#gPearl)"/></g>
+    <ellipse cx="456" cy="1088" rx="20" ry="13" fill="#FFFFFF" opacity="0.8" transform="rotate(-30 456 1088)"/>
+    <text x="478" y="1106" text-anchor="middle" font-family="Amiri" font-size="30" fill="#6E4350">الرحمن</text>
+    <text x="478" y="1142" text-anchor="middle" font-family="Jost" font-size="15" letter-spacing="1.5" fill="#B06A7D">55 · 78</text>
+    <path d="M536,1066 L566,1042" stroke="#C99AA2" stroke-width="1.5"/>
+    <text x="630" y="1030" text-anchor="end" font-family="Cormorant Garamond" font-weight="500" font-size="34" fill="#6E4350">Ar-Rahman</text>
+
+    <!-- 67 Al-Mulk -->
+    <g filter="url(#fSoft)"><circle cx="338" cy="1334" r="54" fill="url(#gPearlIris)"/></g>
+    <ellipse cx="322" cy="1316" rx="16" ry="10" fill="#FFFFFF" opacity="0.8" transform="rotate(-30 322 1316)"/>
+    <text x="338" y="1330" text-anchor="middle" font-family="Amiri" font-size="28" fill="#6E4350">الملك</text>
+    <text x="338" y="1362" text-anchor="middle" font-family="Jost" font-size="15" letter-spacing="1.5" fill="#B06A7D">67 · 30</text>
+    <text x="412" y="1326" font-family="Cormorant Garamond" font-weight="500" font-size="32" fill="#6E4350">Al-Mulk</text>
+
+    <!-- tassel -->
+    <g stroke="#C98C6B" stroke-width="2.4" fill="none" stroke-linecap="round">
+      <path d="M338,1388 L338,1402"/>
+      <path d="M322,1418 C318,1438 318,1452 320,1466 M330,1418 C328,1440 329,1456 330,1470 M338,1418 L338,1472 M346,1418 C348,1440 347,1456 346,1470 M354,1418 C358,1438 358,1452 356,1466"/>
+      <rect x="322" y="1402" width="32" height="16" rx="7" fill="#E2BBA4" stroke="none"/>
+    </g>
+
+    <!-- side control rail -->
+    <g filter="url(#fSoft)">
+      <rect x="586" y="560" width="60" height="420" rx="30" fill="#FFFFFF" fill-opacity="0.75"/>
+    </g>
+    <use href="#icoSearch" transform="translate(616,628) scale(0.8)" stroke="#A85D6E"/>
+    <use href="#icoGrid" transform="translate(616,740) scale(0.8)" stroke="#A85D6E"/>
+    <use href="#icoPlay" transform="translate(618,852) scale(0.8)" fill="#A85D6E"/>
+    <use href="#icoBookmark" transform="translate(616,928) scale(0.7)" stroke="#A85D6E"/>
+    <circle cx="616" cy="692" r="3" fill="#D9A6A8"/>
+    <circle cx="616" cy="796" r="3" fill="#D9A6A8"/>
+  </g>
+</g>
+
+<!-- ============================================================= -->
+<!-- ===============  SCREEN 4 · HADITH READER  ================== -->
+<!-- ============================================================= -->
+<g transform="translate(2510,164)">
+  <rect x="0" y="0" width="680" height="1472" rx="100" fill="url(#gFrame)" filter="url(#fBig)"/>
+  <rect x="6" y="6" width="668" height="1460" rx="96" fill="#FFFDFB"/>
+  <g clip-path="url(#screenClip)">
+    <rect x="10" y="10" width="660" height="1452" fill="url(#gScreen4)"/>
+
+    <!-- ambient glow + faint stars -->
+    <ellipse cx="340" cy="660" rx="360" ry="420" fill="url(#gGlow)" opacity="0.7"/>
+    <use href="#star8" transform="translate(606,196) scale(44)" fill="none" stroke="#C98C6B" stroke-opacity="0.16" stroke-width="0.04"/>
+    <use href="#star8" transform="translate(70,1180) scale(40) rotate(20)" fill="none" stroke="#C98C6B" stroke-opacity="0.14" stroke-width="0.05"/>
+
+    <!-- status bar -->
+    <text x="64" y="78" font-family="Jost" font-weight="500" font-size="26" fill="#9A6A72">9:41</text>
+    <g fill="#9A6A72" opacity="0.9">
+      <rect x="539" y="62" width="5" height="16" rx="2.5"/>
+      <rect x="548" y="58" width="5" height="20" rx="2.5"/>
+      <rect x="557" y="54" width="5" height="24" rx="2.5"/>
+      <rect x="572" y="58" width="40" height="20" rx="10" fill="none" stroke="#9A6A72" stroke-width="2.4"/>
+      <rect x="576" y="62" width="24" height="12" rx="6"/>
+    </g>
+
+    <!-- header -->
+    <text x="358" y="172" text-anchor="middle" font-family="Jost" font-weight="500" font-size="19" letter-spacing="5.5" fill="#A85D6E">SAHIH MUSLIM · BOOK OF FAITH</text>
+
+    <!-- non-rectangular reading panel: petal-dome -->
+    <g filter="url(#fBig)">
+      <path d="M358,212 C470,290 612,408 612,650 L612,1080 C612,1170 540,1224 442,1224 L274,1224 C176,1224 104,1170 104,1080 L104,650 C104,408 246,290 358,212 Z" fill="url(#gPanelPearl)"/>
+    </g>
+    <!-- inner manuscript rule -->
+    <path d="M358,258 C452,326 576,432 576,652 L576,1072 C576,1146 518,1190 436,1190 L280,1190 C198,1190 140,1146 140,1072 L140,652 C140,432 264,326 358,258 Z" fill="none" stroke="#D9B49B" stroke-width="1.6" opacity="0.8"/>
+    <path d="M358,272 C448,338 564,440 564,654 L564,1068 C564,1138 510,1178 434,1178 L282,1178 C206,1178 152,1138 152,1068 L152,654 C152,440 268,338 358,272 Z" fill="none" stroke="#E5C8B2" stroke-width="0.9" opacity="0.8"/>
+
+    <!-- illuminated medallion at apex -->
+    <g filter="url(#fTiny)">
+      <use href="#star8" transform="translate(358,330) scale(46)" fill="url(#gGold)"/>
+      <circle cx="358" cy="330" r="27" fill="#FFFDFB"/>
+    </g>
+    <text x="358" y="344" text-anchor="middle" font-family="Amiri" font-size="34" fill="#A85D6E">١</text>
+
+    <!-- hadith title -->
+    <text x="358" y="436" text-anchor="middle" font-family="Cormorant Garamond" font-weight="500" font-size="46" fill="#6E4350">Of Intentions</text>
+    <g stroke="#C98C6B" stroke-width="1.5" opacity="0.85">
+      <path d="M268,462 L330,462 M386,462 L448,462"/>
+      <use href="#diamond" transform="translate(358,462) scale(7,9)" fill="#C98C6B" stroke="none"/>
+    </g>
+
+    <!-- floating Arabic -->
+    <text x="358" y="586" text-anchor="middle" font-family="Amiri" font-size="64" fill="#5E3A46">إِنَّمَا الْأَعْمَالُ</text>
+    <text x="358" y="686" text-anchor="middle" font-family="Amiri" font-size="64" fill="#5E3A46">بِالنِّيَّاتِ</text>
+
+    <!-- translation -->
+    <text x="358" y="790" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="36" fill="#7A4F5C">“Actions are but</text>
+    <text x="358" y="838" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="36" fill="#7A4F5C">by intentions,</text>
+    <text x="358" y="886" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="36" fill="#7A4F5C">and each soul shall have</text>
+    <text x="358" y="934" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="36" fill="#7A4F5C">what it intended.”</text>
+
+    <!-- reflection note -->
+    <path d="M238,980 L478,980" stroke="#D9B49B" stroke-width="1.2" stroke-dasharray="1 7" stroke-linecap="round"/>
+    <text x="358" y="1030" text-anchor="middle" font-family="Jost" font-size="19" letter-spacing="2" fill="#B58791">A REFLECTION FOR YOUR HEART</text>
+    <text x="358" y="1078" text-anchor="middle" font-family="Cormorant Garamond" font-size="28" fill="#8A5F6A">Begin this day by whispering</text>
+    <text x="358" y="1116" text-anchor="middle" font-family="Cormorant Garamond" font-size="28" fill="#8A5F6A">your intention to Him alone.</text>
+
+    <!-- floral manuscript corners -->
+    <use href="#sprig" transform="translate(176,1160) scale(0.9)"/>
+    <use href="#sprig" transform="translate(540,1160) scale(-0.9,0.9)"/>
+    <use href="#sprig" transform="translate(620,300) scale(0.75) rotate(40)" opacity="0.8"/>
+    <use href="#petal" transform="translate(96,420) scale(15) rotate(-40)" fill="#EFC3C6" opacity="0.7"/>
+
+    <!-- side-mounted control rail (left, curved) -->
+    <path d="M66,520 C36,640 36,820 66,940" fill="none" stroke="#C98C6B" stroke-width="2" opacity="0.6"/>
+    <g filter="url(#fTiny)">
+      <circle cx="58" cy="556" r="34" fill="#FFFDFB"/>
+      <circle cx="44" cy="668" r="34" fill="#FFFDFB"/>
+      <circle cx="44" cy="792" r="34" fill="#FFFDFB"/>
+      <circle cx="58" cy="904" r="34" fill="#FFFDFB"/>
+    </g>
+    <use href="#icoPlay" transform="translate(60,556) scale(0.72)" fill="#A85D6E"/>
+    <use href="#icoBookmark" transform="translate(44,668) scale(0.66)" stroke="#A85D6E"/>
+    <use href="#icoShare" transform="translate(44,792) scale(0.66)" stroke="#A85D6E"/>
+    <text x="58" y="914" text-anchor="middle" font-family="Cormorant Garamond" font-weight="500" font-size="30" fill="#A85D6E">Aa</text>
+
+    <!-- vertical label right -->
+    <text transform="translate(648,760) rotate(90)" text-anchor="middle" font-family="Jost" font-weight="500" font-size="18" letter-spacing="8" fill="#BB8B94">MORNING READING</text>
+
+    <!-- bottom crescent pager -->
+    <path d="M150,1408 C240,1340 476,1340 566,1408" fill="none" stroke="url(#gGold)" stroke-width="2.4"/>
+    <g>
+      <circle cx="190" cy="1384" r="9" fill="#A85D6E"/>
+      <circle cx="248" cy="1368" r="6" fill="#D9A6A8"/>
+      <circle cx="306" cy="1358" r="6" fill="#D9A6A8"/>
+      <circle cx="364" cy="1355" r="6" fill="#D9A6A8"/>
+      <circle cx="422" cy="1358" r="6" fill="#D9A6A8"/>
+      <circle cx="480" cy="1368" r="6" fill="#D9A6A8"/>
+      <circle cx="528" cy="1384" r="6" fill="#D9A6A8"/>
+    </g>
+    <text x="358" y="1444" text-anchor="middle" font-family="Jost" font-size="17" letter-spacing="4" fill="#B06A7D">1 OF 7 · NIYYAH</text>
+  </g>
+</g>
+</svg>
