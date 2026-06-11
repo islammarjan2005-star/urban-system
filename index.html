@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Asma — Quran &amp; Sunnah for Women</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FDF8F3; --ivory2:#F8EFE8; --blush:#F9E9E5; --blush2:#F1D3D4;
+    --pearl:#FFFDFB; --rose:#B5677D; --rose-deep:#9E5269; --rose-mid:#A85D6E;
+    --plum:#6E4350; --plum2:#5E3A46; --text-soft:#8A5F6A; --text-faint:#A9747F;
+    --label:#C2939B; --gold:#C98C6B; --gold-lt:#E3B196; --thread:#D8AE93;
+    --serif:'Cormorant Garamond',serif; --sans:'Jost',sans-serif; --arabic:'Amiri',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    background:linear-gradient(135deg,#F8EFE8,#F3E2DC);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--sans);overflow:hidden;
+  }
+  /* ---------- phone shell ---------- */
+  #phone{
+    position:relative;width:min(100vw,420px);height:min(100dvh,910px);
+    overflow:hidden;background:var(--ivory);
+  }
+  @media(min-width:440px) and (min-height:940px){
+    #phone{
+      border-radius:54px;height:min(92dvh,910px);
+      box-shadow:0 24px 60px rgba(185,127,140,.35),0 0 0 7px transparent;
+      border:6px solid transparent;
+      background-clip:padding-box;
+    }
+    #phone::before{
+      content:'';position:absolute;inset:-6px;border-radius:54px;z-index:-1;
+      background:linear-gradient(135deg,#EFD3C2,#D3A085,#EFCFBC,#C08A66);
+    }
+  }
+  /* ---------- screens ---------- */
+  .screen{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    opacity:0;pointer-events:none;transform:translateY(14px);
+    transition:opacity .55s ease,transform .55s ease;
+    overflow:hidden;
+  }
+  .screen.active{opacity:1;pointer-events:auto;transform:none}
+  .scroll{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;position:relative}
+  .scroll::-webkit-scrollbar{display:none}
+
+  /* ---------- shared ornaments ---------- */
+  .vlabel{
+    position:absolute;writing-mode:vertical-rl;letter-spacing:.55em;
+    font-size:10px;font-weight:500;color:var(--label);z-index:5;pointer-events:none;
+  }
+  .star8{position:absolute;pointer-events:none;opacity:.13}
+  .petal{position:absolute;pointer-events:none}
+  button{font-family:inherit;border:none;background:none;cursor:pointer;color:inherit}
+
+  /* ============ WELCOME ============ */
+  #welcome{background:linear-gradient(180deg,#FEFAF6 0%,#F9E9E5 55%,#F1D3D4 100%)}
+  #welcome .arch{
+    position:absolute;left:50%;top:14%;transform:translateX(-50%);
+    width:62%;height:56%;
+    background:rgba(255,255,255,.38);
+    border-radius:50% 50% 0 0/38% 38% 0 0;
+  }
+  #welcome .arch::before,#welcome .arch::after{
+    content:'';position:absolute;border-radius:inherit;border:1.5px solid;
+  }
+  #welcome .arch::before{inset:18px 18px 0;border-color:rgba(201,140,107,.55);border-bottom:none}
+  #welcome .arch::after{inset:36px 36px 0;border-color:rgba(217,166,168,.5);border-bottom:none}
+  .hang{position:absolute;left:17%;top:0;display:flex;flex-direction:column;align-items:center;pointer-events:none}
+  .hang .line{width:1.5px;height:108px;background:var(--gold)}
+  .hang .gem{width:20px;height:30px;background:#E9C2B4;transform:rotate(45deg);border-radius:4px;margin-top:-2px;position:relative}
+  .hang .gem::after{content:'';position:absolute;inset:35%;background:var(--rose);border-radius:50%}
+  .hang .tassels{display:flex;gap:4px;margin-top:6px}
+  .hang .tassels i{width:1.5px;height:16px;background:var(--gold);display:block}
+  .moon{position:absolute;right:11%;top:8.5%;width:42px;height:42px;pointer-events:none}
+  .welcome-inner{
+    position:relative;z-index:2;flex:1;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:0 30px;gap:0;
+  }
+  .bismillah{font-family:var(--arabic);font-size:21px;color:#B06A7D;margin-bottom:6px}
+  .wordmark{font-family:var(--serif);font-weight:500;font-size:96px;line-height:1;color:var(--plum)}
+  .wordmark-ar{font-family:var(--arabic);font-size:26px;color:var(--gold);margin-top:2px}
+  .orn{display:flex;align-items:center;gap:12px;color:var(--gold);margin:18px 0 14px}
+  .orn .l{width:62px;height:1.5px;background:var(--gold)}
+  .orn .d{width:10px;height:14px;background:var(--gold);transform:rotate(45deg) scaleY(.8);border-radius:2px}
+  .strap{font-size:11.5px;letter-spacing:.42em;color:var(--rose-mid);font-weight:500;margin-bottom:26px;padding-left:.42em;white-space:nowrap}
+  .poem{font-family:var(--serif);font-style:italic;font-size:20px;color:#8A5B66;line-height:1.4}
+  .cta{
+    margin-top:42px;padding:17px 44px;color:#FFF6F1;font-size:15px;letter-spacing:.22em;
+    font-weight:500;background:linear-gradient(135deg,#C57A8E,#9E5269);
+    border-radius:34px 34px 34px 14px;box-shadow:0 12px 26px rgba(158,82,105,.4);
+    display:flex;align-items:center;gap:10px;transition:transform .25s,box-shadow .25s;
+  }
+  .cta:active{transform:scale(.96)}
+  .cta svg{width:16px;height:16px}
+  .ghostlink{
+    margin-top:22px;font-family:var(--serif);font-style:italic;font-size:17px;color:#A4707C;
+    border-bottom:1.5px dotted #C99AA2;padding-bottom:3px;
+  }
+  .ground{position:absolute;left:-5%;right:-5%;bottom:-2%;height:24%;pointer-events:none}
+  .ground .g1,.ground .g2{position:absolute;inset:0;border-radius:48% 52% 0 0/90% 70% 0 0}
+  .ground .g1{background:rgba(255,255,255,.4);transform:translateY(12%)}
+  .ground .g2{background:rgba(244,207,210,.55);transform:translateY(36%) scaleX(1.1)}
+
+  /* ============ HOME ============ */
+  #home{background:linear-gradient(180deg,#FDF7F2,#F7E5E0)}
+  .home-head{padding:58px 28px 0;position:relative;z-index:3}
+  .salam{font-family:var(--serif);font-style:italic;font-size:20px;color:#9A6A72}
+  .uname{font-family:var(--serif);font-weight:500;font-size:40px;color:var(--plum);line-height:1.05}
+  .hdate{font-size:10.5px;letter-spacing:.28em;color:var(--label);font-weight:500;margin-top:6px}
+  .nur{
+    position:absolute;right:-26px;top:44px;width:128px;height:128px;border-radius:50%;
+    background:radial-gradient(circle at 35% 28%,#fff,#F9EFF2 50%,#EFE0EC 78%,#E5CDD8);
+    box-shadow:0 12px 26px rgba(194,142,154,.35);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+  }
+  .nur svg{position:absolute;inset:12px}
+  .nur b{font-family:var(--serif);font-weight:500;font-size:30px;color:var(--plum)}
+  .nur span{font-size:8.5px;letter-spacing:.22em;color:#B06A7D;margin-top:1px}
+  .pathwrap{position:relative;flex:1;margin-top:-6px}
+  .pathwrap>svg.flow{position:absolute;inset:0;width:100%;height:100%}
+  .node{
+    position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;transition:transform .25s;z-index:2;
+  }
+  .node:active{transform:scale(.94)}
+  .node h3{font-family:var(--serif);font-weight:500;color:var(--plum)}
+  .node p{font-size:10.5px;letter-spacing:.1em;color:var(--text-faint)}
+  .node .ico{color:#B06A7D;margin-bottom:4px}
+  .node-quran{
+    left:6%;top:13%;width:170px;height:152px;
+    background:radial-gradient(circle at 38% 30%,#fff,#FCF2EE 45%,#F4E2E3 75%,#ECD3D6);
+    border-radius:54% 46% 52% 48%/48% 56% 44% 52%;
+    box-shadow:0 12px 26px rgba(194,142,154,.32);
+  }
+  .node-quran h3{font-size:26px}
+  .node-quran .ghost{position:absolute;right:14px;top:12px;font-family:var(--arabic);font-size:24px;color:#E3BCC0}
+  .node-sunnah{
+    right:4%;top:35%;width:142px;height:142px;border-radius:50%;
+    background:rgba(247,220,220,.92);border:2px solid rgba(255,255,255,.85);
+    box-shadow:0 12px 26px rgba(194,142,154,.3);
+  }
+  .node-sunnah h3{font-size:23px}
+  .node-duas{
+    left:9%;top:56%;width:138px;height:148px;
+    background:radial-gradient(circle at 36% 28%,#fff,#F9EFF2 50%,#EFE0EC 80%,#E5CDD8);
+    border-radius:60% 40% 55% 45%/35% 60% 40% 65%;transform:rotate(-8deg);
+    box-shadow:0 12px 26px rgba(194,142,154,.32);
+  }
+  .node-duas>*{transform:rotate(8deg)}
+  .node-duas h3{font-size:23px}
+  .node-dhikr{
+    right:7%;top:74%;width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(circle at 38% 30%,#fff,#FCF2EE 50%,#F4E2E3 80%,#ECD3D6);
+    outline:2px dashed #D9A6A8;outline-offset:5px;
+    box-shadow:0 12px 26px rgba(194,142,154,.3);
+  }
+  .node-dhikr h3{font-size:21px}
+  .node-dhikr.bump{animation:bump .3s ease}
+  @keyframes bump{40%{transform:scale(1.08)}}
+
+  /* crescent nav */
+  .cnav{
+    position:absolute;left:0;right:0;bottom:0;height:96px;z-index:8;
+    pointer-events:none;
+  }
+  .cnav .arcbg{position:absolute;inset:0}
+  .cnav .icons{
+    position:absolute;inset:0;display:flex;justify-content:space-evenly;align-items:flex-end;
+    padding:0 26px 12px;pointer-events:auto;
+  }
+  .cnav button{
+    color:#FAD3CD;display:flex;flex-direction:column;align-items:center;gap:5px;
+    padding:8px;transform:translateY(0);transition:.25s;
+  }
+  .cnav button:nth-child(1),.cnav button:nth-child(4){transform:translateY(14px)}
+  .cnav button.on{color:#FFE9E2}
+  .cnav button .dot{width:5px;height:5px;border-radius:50%;background:transparent}
+  .cnav button.on .dot{background:#FFE9E2}
+  .cnav .icons svg{width:24px;height:24px}
+
+  /* ============ QURAN ============ */
+  #quran{background:linear-gradient(180deg,#FDF8F3,#F9EAE4)}
+  .q-head{padding:54px 26px 0;text-align:right;position:relative;z-index:3}
+  .q-head .ar{font-family:var(--arabic);font-size:24px;color:var(--gold)}
+  .q-head h1{font-family:var(--serif);font-weight:500;font-size:52px;color:var(--plum);line-height:1}
+  .q-head p{font-size:10.5px;letter-spacing:.26em;color:#B58791;margin-top:4px}
+  .strand{position:relative;min-height:980px;margin-top:4px}
+  .strand>svg.thread{position:absolute;inset:0;width:100%;height:980px}
+  .pearl{
+    position:absolute;border-radius:50%;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;z-index:2;
+    background:radial-gradient(circle at 36% 28%,#fff 0%,#FCF2EE 45%,#F4E2E3 75%,#ECD3D6 100%);
+    box-shadow:0 10px 22px rgba(194,142,154,.32);transition:transform .25s;
+  }
+  .pearl:active{transform:scale(.94)}
+  .pearl .ar{font-family:var(--arabic);color:var(--plum)}
+  .pearl .meta{font-size:9.5px;letter-spacing:.14em;color:#B06A7D;margin-top:2px}
+  .pearl.iris{background:radial-gradient(circle at 35% 28%,#fff,#F9EFF2 50%,#EFE0EC 78%,#E5CDD8)}
+  .pearl.current{outline:2px dashed;outline-color:#C98C6B;outline-offset:8px}
+  .plabel{position:absolute;z-index:2;pointer-events:none}
+  .plabel h4{font-family:var(--serif);font-weight:500;font-size:21px;color:var(--plum)}
+  .plabel em{font-family:var(--serif);font-size:14px;color:var(--text-faint)}
+  .resume{
+    position:absolute;z-index:3;padding:8px 18px;font-size:12px;font-weight:500;letter-spacing:.06em;
+    color:#FFF3EE;background:linear-gradient(135deg,#C57A8E,#9E5269);
+    border-radius:18px 18px 18px 6px;box-shadow:0 8px 18px rgba(158,82,105,.4);
+  }
+  .rail{
+    position:absolute;right:12px;top:200px;width:46px;z-index:6;
+    background:rgba(255,255,255,.78);border-radius:23px;
+    box-shadow:0 10px 22px rgba(194,142,154,.3);
+    display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 0;
+  }
+  .rail button{color:var(--rose-mid);padding:8px;display:flex}
+  .rail .sep{width:4px;height:4px;border-radius:50%;background:#D9A6A8}
+  .rail svg{width:19px;height:19px}
+  .tassel{position:absolute;left:50%;transform:translateX(-50%);bottom:-8px;display:flex;flex-direction:column;align-items:center}
+  .tassel .cap{width:26px;height:13px;background:#E2BBA4;border-radius:6px}
+  .tassel .th{display:flex;gap:5px;margin-top:2px}
+  .tassel .th i{width:1.6px;height:34px;background:var(--gold);display:block;border-radius:2px}
+  .tassel .th i:nth-child(2),.tassel .th i:nth-child(4){height:40px}
+  .tassel .th i:nth-child(3){height:46px}
+
+  /* ============ READER ============ */
+  #reader{background:linear-gradient(180deg,#F9E9E5,#EFCFD1)}
+  .r-head{padding:56px 24px 0;text-align:center;font-size:11px;letter-spacing:.32em;color:var(--rose-mid);font-weight:500;position:relative;z-index:3}
+  .dome-wrap{position:relative;flex:1;display:flex;justify-content:center;padding:10px 8px 0}
+  .dome{
+    position:relative;width:88%;max-width:340px;margin-top:6px;
+    background:linear-gradient(180deg,#FFFDFB,#FBEEEA);
+    border-radius:50% 50% 34px 34px/30% 30% 34px 34px;
+    box-shadow:0 22px 48px rgba(185,127,140,.35);
+    padding:26px 26px 30px;text-align:center;
+  }
+  .dome::before{
+    content:'';position:absolute;inset:16px;border-radius:inherit;
+    border:1.5px solid rgba(217,180,155,.8);pointer-events:none;
+  }
+  .dome::after{
+    content:'';position:absolute;inset:23px;border-radius:inherit;
+    border:1px solid rgba(229,200,178,.8);pointer-events:none;
+  }
+  .medallion{
+    width:62px;height:62px;margin:4px auto 10px;position:relative;
+    display:flex;align-items:center;justify-content:center;
+    filter:drop-shadow(0 4px 7px rgba(194,142,154,.4));
+  }
+  .medallion .sq{position:absolute;inset:8px;background:linear-gradient(135deg,#E3B196,#C98C6B)}
+  .medallion .sq.a{transform:rotate(45deg)}
+  .medallion .c{position:absolute;width:34px;height:34px;border-radius:50%;background:var(--pearl)}
+  .medallion span{position:relative;font-family:var(--arabic);font-size:19px;color:var(--rose-mid)}
+  .r-title{font-family:var(--serif);font-weight:500;font-size:28px;color:var(--plum)}
+  .r-orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 14px}
+  .r-orn .l{width:44px;height:1.2px;background:var(--gold)}
+  .r-orn .d{width:7px;height:10px;background:var(--gold);transform:rotate(45deg) scaleY(.8);border-radius:1.5px}
+  .r-ar{font-family:var(--arabic);font-size:31px;line-height:1.9;color:var(--plum2);transition:font-size .3s}
+  .r-tr{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.45;color:#7A4F5C;margin-top:16px;transition:font-size .3s}
+  .dome.big .r-ar{font-size:37px}
+  .dome.big .r-tr{font-size:22px}
+  .r-rule{width:60%;margin:18px auto 0;border-top:1.5px dotted #D9B49B}
+  .r-note-label{font-size:10px;letter-spacing:.22em;color:#B58791;margin-top:16px}
+  .r-note{font-family:var(--serif);font-size:16.5px;line-height:1.4;color:var(--text-soft);margin-top:8px}
+  .sprigs{display:flex;justify-content:space-between;padding:0 6px;margin-top:14px}
+  .sprigs svg{width:34px;height:46px;color:var(--gold);opacity:.85}
+  .lrail{
+    position:absolute;left:6px;top:24%;z-index:6;display:flex;flex-direction:column;gap:14px;align-items:center;
+  }
+  .lrail button{
+    width:48px;height:48px;border-radius:50%;background:var(--pearl);
+    box-shadow:0 6px 14px rgba(194,142,154,.35);color:var(--rose-mid);
+    display:flex;align-items:center;justify-content:center;transition:.25s;
+    font-family:var(--serif);font-weight:500;font-size:17px;
+  }
+  .lrail button:nth-child(2),.lrail button:nth-child(3){transform:translateX(-10px)}
+  .lrail button:active{transform:scale(.92)}
+  .lrail button.lit{background:linear-gradient(135deg,#C57A8E,#9E5269);color:#FFF3EE}
+  .lrail button.pulse{animation:pulse 1.6s infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 10px rgba(158,82,105,.18)}}
+  .lrail svg{width:20px;height:20px}
+  .pager{position:relative;text-align:center;padding:6px 0 18px;z-index:3}
+  .pager .arc{display:flex;justify-content:center;align-items:flex-end;gap:13px;height:30px}
+  .pager .arc button{width:14px;height:14px;display:flex;align-items:center;justify-content:center;padding:0}
+  .pager .arc i{width:7px;height:7px;border-radius:50%;background:#D9A6A8;display:block;transition:.3s}
+  .pager .arc button.on i{width:11px;height:11px;background:var(--rose-mid)}
+  .pager .arc button:nth-child(1),.pager .arc button:nth-child(7){transform:translateY(0)}
+  .pager .arc button:nth-child(2),.pager .arc button:nth-child(6){transform:translateY(-7px)}
+  .pager .arc button:nth-child(3),.pager .arc button:nth-child(5){transform:translateY(-12px)}
+  .pager .arc button:nth-child(4){transform:translateY(-14px)}
+  .pager p{font-size:10.5px;letter-spacing:.3em;color:#B06A7D;margin-top:4px}
+
+  /* toast */
+  #toast{
+    position:absolute;left:50%;bottom:120px;transform:translate(-50%,18px);z-index:50;
+    background:rgba(94,58,70,.92);color:#FFF3EE;font-size:13px;letter-spacing:.06em;
+    padding:11px 22px;border-radius:22px;opacity:0;pointer-events:none;transition:.4s;
+  }
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  .fade-swap{animation:fadeswap .5s ease}
+  @keyframes fadeswap{0%{opacity:0;transform:translateY(8px)}100%{opacity:1}}
+</style>
+</head>
+<body>
+<div id="phone">
+
+  <!-- ================= WELCOME ================= -->
+  <section class="screen active" id="welcome">
+    <div class="arch"></div>
+    <svg class="star8" style="left:6%;top:20%;width:78px;height:78px" viewBox="-1 -1 2 2"><path d="M-.65-.65H.65V.65H-.65Z M0-.92 .92 0 0 .92 -.92 0Z" fill="none" stroke="#C98C6B" stroke-width=".04"/></svg>
+    <svg class="star8" style="right:8%;top:36%;width:56px;height:56px" viewBox="-1 -1 2 2"><path d="M-.65-.65H.65V.65H-.65Z M0-.92 .92 0 0 .92 -.92 0Z" fill="none" stroke="#C98C6B" stroke-width=".05"/></svg>
+    <svg class="petal" style="left:8%;top:47%;width:26px;opacity:.6" viewBox="-1 -1 2 2"><path d="M0-1C.58-.78 .78-.12 .46.5 .26.88 -.26.88 -.46.5 -.78-.12 -.58-.78 0-1Z" fill="#F2C6CB" transform="rotate(-30)"/></svg>
+    <svg class="petal" style="right:6%;top:60%;width:22px;opacity:.55" viewBox="-1 -1 2 2"><path d="M0-1C.58-.78 .78-.12 .46.5 .26.88 -.26.88 -.46.5 -.78-.12 -.58-.78 0-1Z" fill="#EFBFC0" transform="rotate(120)"/></svg>
+    <div class="hang"><span class="line"></span><span class="gem"></span><span class="tassels"><i></i><i></i><i></i></span></div>
+    <svg class="moon" viewBox="-1.2 -1.2 2.4 2.4"><path d="M.4-.92A1 1 0 1 0 .92.4 .74 .74 0 1 1 .4-.92Z" fill="#C98C6B" transform="rotate(18)"/></svg>
+    <span class="vlabel" style="left:14px;top:50%;transform:translateY(-50%) rotate(180deg)">A SANCTUARY OF LIGHT</span>
+
+    <div class="welcome-inner">
+      <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <div class="wordmark">Asma</div>
+      <div class="wordmark-ar">أَسْمَاء</div>
+      <div class="orn"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      <div class="strap">QURAN &amp; SUNNAH FOR WOMEN</div>
+      <div class="poem">Enter softly — your heart<br>already knows the way.</div>
+      <button class="cta" onclick="go('home')">Begin your journey
+        <svg viewBox="-1.2 -1.2 2.4 2.4"><path d="M.4-.92A1 1 0 1 0 .92.4 .74 .74 0 1 1 .4-.92Z" fill="#FFE9DC" transform="rotate(18)"/></svg>
+      </button>
+      <button class="ghostlink" onclick="go('home')">I have walked here before</button>
+    </div>
+    <div class="ground"><div class="g1"></div><div class="g2"></div></div>
+  </section>
+
+  <!-- ================= HOME ================= -->
+  <section class="screen" id="home">
+    <div class="scroll">
+      <div class="home-head">
+        <div class="salam">Assalamu alaikum,</div>
+        <div class="uname">Maryam</div>
+        <div class="hdate">RABI’ AL-AWWAL 14 · FAJR 5:12</div>
+        <div class="nur">
+          <svg viewBox="0 0 104 104">
+            <circle cx="52" cy="52" r="44" fill="none" stroke="#EFD8D4" stroke-width="6"/>
+            <circle id="nurArc" cx="52" cy="52" r="44" fill="none" stroke="#C98C6B" stroke-width="6"
+              stroke-linecap="round" stroke-dasharray="0 277" transform="rotate(-90 52 52)"/>
+          </svg>
+          <b>62%</b><span>TODAY’S NUR</span>
+        </div>
+      </div>
+      <span class="vlabel" style="right:12px;top:56%">YOUR PATH TODAY</span>
+
+      <div class="pathwrap" style="min-height:640px">
+        <svg class="flow" viewBox="0 0 390 640" preserveAspectRatio="none">
+          <path d="M195,4 C90,80 78,150 124,198 C176,254 300,236 300,312 C300,382 172,370 144,428 C120,476 172,524 206,556 C232,580 232,610 220,636"
+            fill="none" stroke="#fff" stroke-width="16" opacity=".55"/>
+          <path d="M195,4 C90,80 78,150 124,198 C176,254 300,236 300,312 C300,382 172,370 144,428 C120,476 172,524 206,556 C232,580 232,610 220,636"
+            fill="none" stroke="#C98C6B" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="0.1 12"/>
+          <circle cx="195" cy="4" r="5" fill="#C98C6B"/>
+          <circle cx="220" cy="636" r="5" fill="#C98C6B"/>
+        </svg>
+
+        <button class="node node-quran" onclick="go('quran')">
+          <span class="ghost">القرآن</span>
+          <span class="ico"><svg width="26" height="26" viewBox="-24 -24 48 48" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M0-12C-6-17-14-18-20-16V12C-14 10-6 11 0 16 6 11 14 10 20 12V-16C14-18 6-17 0-12Z"/><path d="M0-12V16"/></svg></span>
+          <h3>Quran</h3><p>Continue Al-Kahf · Juz 15</p>
+        </button>
+
+        <button class="node node-sunnah" onclick="go('reader',1)">
+          <span class="ico"><svg width="24" height="24" viewBox="-24 -24 48 48" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M0 14C-16 4-20-6-14-13-9-18-2-16 0-10 2-16 9-18 14-13 20-6 16 4 0 14Z"/></svg></span>
+          <h3>Sunnah</h3><p>3 pearls today</p>
+        </button>
+
+        <button class="node node-duas" onclick="go('reader',2)">
+          <span class="ico"><svg width="24" height="24" viewBox="-24 -24 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M-16-6C-18 6-10 15 0 17 10 15 18 6 16-6"/><path d="M-16-6C-12-2-6 0 0 0 6 0 12-2 16-6"/><path d="M0-18V-13M-5-16-2.5-12M5-16 2.5-12"/></svg></span>
+          <h3>Duas</h3><p>for the morning</p>
+        </button>
+
+        <button class="node node-dhikr" id="dhikrNode" onclick="dhikrTap()">
+          <span class="ico"><svg width="24" height="24" viewBox="-24 -24 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M-18 10C-10-6 10-6 18 10" stroke-dasharray="0.1 9"/><circle cx="-18" cy="10" r="5.5"/><circle cx="0" cy="-2" r="5.5"/><circle cx="18" cy="10" r="5.5"/></svg></span>
+          <h3>Dhikr</h3><p><b id="dhikrCount">33</b> of 99</p>
+        </button>
+      </div>
+      <div style="height:110px"></div>
+    </div>
+  </section>
+
+  <!-- ================= QURAN ================= -->
+  <section class="screen" id="quran">
+    <div class="scroll">
+      <div class="q-head">
+        <div class="ar">القرآن الكريم</div>
+        <h1>Quran</h1>
+        <p>114 SURAHS · A STRAND OF PEARLS</p>
+      </div>
+      <span class="vlabel" style="left:12px;top:42%;transform:rotate(180deg)">SURAH ATLAS</span>
+
+      <div class="strand">
+        <svg class="thread" viewBox="0 0 390 980" preserveAspectRatio="none">
+          <path d="M66,30 C54,120 130,150 192,172 C272,202 280,256 222,290 154,332 100,348 106,406 113,470 244,460 272,512 296,556 244,592 204,622 168,650 168,706 192,740 220,778 196,830 178,876 168,906 178,944 195,972"
+            fill="none" stroke="#D8AE93" stroke-width="2.6"/>
+          <g fill="#E2BBA4">
+            <circle cx="120" cy="146" r="5"/><circle cx="154" cy="159" r="5"/>
+            <circle cx="252" cy="216" r="5"/><circle cx="262" cy="248" r="5"/>
+            <circle cx="172" cy="320" r="5"/><circle cx="138" cy="334" r="5"/>
+            <circle cx="108" cy="434" r="5"/><circle cx="136" cy="450" r="5"/>
+            <circle cx="252" cy="486" r="5"/><circle cx="282" cy="528" r="5"/>
+            <circle cx="186" cy="636" r="5"/><circle cx="170" cy="668" r="5"/>
+            <circle cx="206" cy="762" r="5"/><circle cx="190" cy="800" r="5"/>
+          </g>
+        </svg>
+
+        <button class="pearl" style="left:7%;top:6px;width:96px;height:96px" onclick="go('reader',0)">
+          <span class="ar" style="font-size:21px">الفاتحة</span><span class="meta">1 · 7 AYAT</span>
+        </button>
+        <div class="plabel" style="left:38%;top:18px"><h4>Al-Fatihah</h4><em>The Opening</em></div>
+
+        <button class="pearl iris" style="left:40%;top:130px;width:80px;height:80px" onclick="go('reader',0)">
+          <span class="ar" style="font-size:17px">البقرة</span><span class="meta">2 · 286</span>
+        </button>
+        <div class="plabel" style="right:68px;top:118px;text-align:right"><h4>Al-Baqarah</h4><em>The Heifer</em></div>
+
+        <button class="pearl current" style="left:31%;top:268px;width:118px;height:118px" onclick="go('reader',0)">
+          <span class="ar" style="font-size:25px">الكهف</span><span class="meta">18 · 110 AYAT</span>
+        </button>
+        <button class="resume" style="left:66%;top:268px" onclick="go('reader',0)">Resume</button>
+        <div class="plabel" style="left:50%;top:402px;transform:translateX(-50%);text-align:center"><h4>Al-Kahf</h4><em>The Cave · 18:10</em></div>
+
+        <button class="pearl iris" style="left:14%;top:486px;width:76px;height:76px" onclick="go('reader',0)">
+          <span class="ar" style="font-size:17px">يس</span><span class="meta">36 · 83</span>
+        </button>
+        <div class="plabel" style="left:9%;top:574px"><h4>Ya-Sin</h4><em>The Heart</em></div>
+
+        <button class="pearl" style="left:56%;top:560px;width:88px;height:88px" onclick="go('reader',0)">
+          <span class="ar" style="font-size:17px">الرحمن</span><span class="meta">55 · 78</span>
+        </button>
+        <div class="plabel" style="left:54%;top:512px"><h4>Ar-Rahman</h4><em>The Merciful</em></div>
+
+        <button class="pearl iris" style="left:34%;top:806px;width:74px;height:74px" onclick="go('reader',0)">
+          <span class="ar" style="font-size:16px">الملك</span><span class="meta">67 · 30</span>
+        </button>
+        <div class="plabel" style="left:58%;top:822px"><h4>Al-Mulk</h4><em>The Kingdom</em></div>
+
+        <div class="tassel" style="bottom:6px"><span class="cap"></span><span class="th"><i></i><i></i><i></i><i></i><i></i></span></div>
+      </div>
+      <div style="height:110px"></div>
+    </div>
+
+    <div class="rail">
+      <button onclick="toast('Search the strand')"><svg viewBox="-24 -24 48 48" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"><circle cx="-3" cy="-3" r="11"/><path d="M6 6 16 16"/></svg></button>
+      <span class="sep"></span>
+      <button onclick="toast('Browse by Juz’')"><svg viewBox="-24 -24 48 48" fill="none" stroke="currentColor" stroke-width="3.4"><circle cx="-9" cy="-9" r="4.5"/><circle cx="9" cy="-9" r="4.5"/><circle cx="-9" cy="9" r="4.5"/><circle cx="9" cy="9" r="4.5"/></svg></button>
+      <span class="sep"></span>
+      <button onclick="toast('Recitation — coming soon')"><svg viewBox="-24 -24 48 48" fill="currentColor"><path d="M-7-12 13 0-7 12Z"/></svg></button>
+      <button onclick="toast('Saved to your pearls')"><svg viewBox="-24 -24 48 48" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M-11-16H11V16L0 7-11 16Z"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ================= READER ================= -->
+  <section class="screen" id="reader">
+    <div class="scroll">
+      <div class="r-head" id="rSource">SAHIH MUSLIM · BOOK OF FAITH</div>
+      <span class="vlabel" style="right:12px;top:40%">MORNING READING</span>
+
+      <div class="dome-wrap">
+        <div class="dome" id="dome">
+          <div class="medallion"><span class="sq"></span><span class="sq a"></span><span class="c"></span><span id="rNum">١</span></div>
+          <div class="r-title" id="rTitle">Of Intentions</div>
+          <div class="r-orn"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+          <div class="r-ar" id="rArabic">إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ</div>
+          <div class="r-tr" id="rTrans">“Actions are but by intentions, and each soul shall have what it intended.”</div>
+          <div class="r-rule"></div>
+          <div class="r-note-label">A REFLECTION FOR YOUR HEART</div>
+          <div class="r-note" id="rNote">Begin this day by whispering your intention to Him alone.</div>
+          <div class="sprigs">
+            <svg viewBox="-40 -130 80 140" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M0 0C8-34-6-66 4-104"/><path d="M2-26C20-30 30-44 32-60 16-56 4-44 2-26Z" fill="#E9BFB4" stroke="none"/><path d="M-1-52C-19-56-29-70-31-86-15-82-3-70-1-52Z" fill="#E9BFB4" stroke="none"/><circle cx="4" cy="-112" r="7" fill="#D88FA0" stroke="none"/></svg>
+            <svg viewBox="-40 -130 80 140" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="transform:scaleX(-1)"><path d="M0 0C8-34-6-66 4-104"/><path d="M2-26C20-30 30-44 32-60 16-56 4-44 2-26Z" fill="#E9BFB4" stroke="none"/><path d="M-1-52C-19-56-29-70-31-86-15-82-3-70-1-52Z" fill="#E9BFB4" stroke="none"/><circle cx="4" cy="-112" r="7" fill="#D88FA0" stroke="none"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="pager">
+        <div class="arc" id="pagerArc"></div>
+        <p id="pagerLabel">1 OF 7 · NIYYAH</p>
+      </div>
+      <div style="height:100px"></div>
+    </div>
+
+    <div class="lrail">
+      <button id="btnPlay" onclick="togglePlay(this)"><svg viewBox="-24 -24 48 48" fill="currentColor"><path d="M-7-12 13 0-7 12Z"/></svg></button>
+      <button id="btnBook" onclick="this.classList.toggle('lit');toast(this.classList.contains('lit')?'Kept in your heart':'Removed')"><svg viewBox="-24 -24 48 48" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M-11-16H11V16L0 7-11 16Z"/></svg></button>
+      <button onclick="toast('Shared with love')"><svg viewBox="-24 -24 48 48" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"><circle cx="-11" cy="0" r="5"/><circle cx="11" cy="-11" r="5"/><circle cx="11" cy="11" r="5"/><path d="M-6.5-2.5 6.5-8.5M-6.5 2.5 6.5 8.5"/></svg></button>
+      <button onclick="document.getElementById('dome').classList.toggle('big')">Aa</button>
+    </div>
+  </section>
+
+  <!-- crescent nav (shared) -->
+  <nav class="cnav" id="cnav">
+    <svg class="arcbg" viewBox="0 0 390 96" preserveAspectRatio="none">
+      <defs><linearGradient id="navg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#CE8194"/><stop offset="1" stop-color="#A75A70"/>
+      </linearGradient></defs>
+      <path d="M-10,96 C50,8 340,8 400,96 Z" fill="url(#navg)"/>
+      <path d="M16,84 C80,18 310,18 374,84" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1.5"/>
+    </svg>
+    <div class="icons">
+      <button data-s="home" onclick="go('home')"><svg viewBox="-26 -26 52 52" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M-14 16V-2C-14-14-6-21 0-24 6-21 14-14 14-2V16Z"/><path d="M-21 16H21"/></svg><span class="dot"></span></button>
+      <button data-s="quran" onclick="go('quran')"><svg viewBox="-26 -26 52 52" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M0-12C-6-17-14-18-20-16V12C-14 10-6 11 0 16 6 11 14 10 20 12V-16C14-18 6-17 0-12Z"/><path d="M0-12V16"/></svg><span class="dot"></span></button>
+      <button data-s="reader" onclick="go('reader')"><svg viewBox="-26 -26 52 52" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M-16-6C-18 6-10 15 0 17 10 15 18 6 16-6"/><path d="M-16-6C-12-2-6 0 0 0 6 0 12-2 16-6"/><path d="M0-18V-13M-5-16-2.5-12M5-16 2.5-12"/></svg><span class="dot"></span></button>
+      <button data-s="welcome" onclick="go('welcome')"><svg viewBox="-30 -30 60 60" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"><path d="M5-16A17 17 0 1 0 16 5 13.5 13.5 0 1 1 5-16Z"/></svg><span class="dot"></span></button>
+    </div>
+  </nav>
+
+  <div id="toast"></div>
+</div>
+
+<script>
+  const readings=[
+    {src:'SAHIH MUSLIM · BOOK OF FAITH',num:'١',title:'Of Intentions',
+     ar:'إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ',
+     tr:'“Actions are but by intentions, and each soul shall have what it intended.”',
+     note:'Begin this day by whispering your intention to Him alone.',label:'NIYYAH'},
+    {src:'RIYAD AS-SALIHIN · GENTLENESS',num:'٢',title:'Of Gentleness',
+     ar:'إِنَّ اللَّهَ رَفِيقٌ يُحِبُّ الرِّفْقَ',
+     tr:'“Indeed, Allah is gentle and He loves gentleness in all things.”',
+     note:'Let softness be your strength in every room you enter today.',label:'RIFQ'},
+    {src:'MORNING DUA · UPON WAKING',num:'٣',title:'Dua of Daybreak',
+     ar:'اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا',
+     tr:'“O Allah, by You we enter the morning and by You we enter the evening.”',
+     note:'Speak it slowly, before the world asks anything of you.',label:'SABAH'},
+    {src:'QURAN · AL-KAHF 18:10',num:'٤',title:'The Cave',
+     ar:'رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً',
+     tr:'“Our Lord, grant us mercy from Yourself and guide us rightly in our affair.”',
+     note:'The young believers asked for mercy first — begin where they began.',label:'RAHMAH'},
+    {src:'SAHIH AL-BUKHARI · KINDNESS',num:'٥',title:'Of Mercy',
+     ar:'مَنْ لَا يَرْحَمْ لَا يُرْحَمْ',
+     tr:'“Whoever does not show mercy will not be shown mercy.”',
+     note:'Offer one unseen kindness today, known only to Him.',label:'RAHMA'},
+    {src:'EVENING DHIKR · LIGHT',num:'٦',title:'Words of Light',
+     ar:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
+     tr:'“Glory be to Allah and praise be to Him” — a hundred times, and sins fall away like leaves.',
+     note:'Let this be the rhythm your evening walks to.',label:'TASBIH'},
+    {src:'QURAN · ASH-SHARH 94:6',num:'٧',title:'With Hardship',
+     ar:'إِنَّ مَعَ الْعُسْرِ يُسْرًا',
+     tr:'“Indeed, with hardship comes ease.”',
+     note:'Whatever you carried into this day, set it down here for a moment.',label:'YUSR'},
+  ];
+  let page=0;
+
+  function go(id,pageIdx){
+    if(typeof pageIdx==='number') setPage(pageIdx);
+    document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));
+    const nav=document.getElementById('cnav');
+    nav.style.display = id==='welcome' ? 'none':'block';
+    document.querySelectorAll('.cnav .icons button').forEach(b=>b.classList.toggle('on',b.dataset.s===id));
+    if(id==='home') animateNur();
+  }
+
+  function setPage(i){
+    page=((i%readings.length)+readings.length)%readings.length;
+    const r=readings[page];
+    const dome=document.getElementById('dome');
+    dome.classList.remove('fade-swap');void dome.offsetWidth;dome.classList.add('fade-swap');
+    rSource.textContent=r.src; rNum.textContent=r.num; rTitle.textContent=r.title;
+    rArabic.textContent=r.ar; rTrans.textContent=r.tr; rNote.textContent=r.note;
+    pagerLabel.textContent=(page+1)+' OF 7 · '+r.label;
+    document.querySelectorAll('#pagerArc button').forEach((b,j)=>b.classList.toggle('on',j===page));
+  }
+
+  // build pager dots
+  const arc=document.getElementById('pagerArc');
+  readings.forEach((_,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML='<i></i>';
+    b.onclick=()=>setPage(i);
+    arc.appendChild(b);
+  });
+  setPage(0);
+
+  // nur ring animation (62% of 2*pi*44 ≈ 277)
+  function animateNur(){
+    const a=document.getElementById('nurArc');
+    a.style.transition='none';a.setAttribute('stroke-dasharray','0 277');
+    requestAnimationFrame(()=>{a.style.transition='stroke-dasharray 1.4s ease';a.setAttribute('stroke-dasharray','172 277');});
+  }
+
+  // dhikr counter
+  let dhikr=33;
+  function dhikrTap(){
+    dhikr=dhikr>=99?1:dhikr+1;
+    document.getElementById('dhikrCount').textContent=dhikr;
+    const n=document.getElementById('dhikrNode');
+    n.classList.remove('bump');void n.offsetWidth;n.classList.add('bump');
+    if(dhikr===99)toast('SubhanAllah — 99 complete ✨');
+  }
+
+  // play toggle
+  function togglePlay(btn){
+    const on=btn.classList.toggle('lit');
+    btn.classList.toggle('pulse',on);
+    btn.innerHTML=on
+      ?'<svg viewBox="-24 -24 48 48" fill="currentColor"><rect x="-10" y="-11" width="7" height="22" rx="2"/><rect x="3" y="-11" width="7" height="22" rx="2"/></svg>'
+      :'<svg viewBox="-24 -24 48 48" fill="currentColor"><path d="M-7-12 13 0-7 12Z"/></svg>';
+    toast(on?'Reciting softly…':'Paused');
+  }
+
+  // toast
+  let toastT;
+  function toast(msg){
+    const t=document.getElementById('toast');
+    t.textContent=msg;t.classList.add('show');
+    clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),1800);
+  }
+
+  // start state
+  document.getElementById('cnav').style.display='none';
+
+  // swipe between readings in reader
+  let sx=null;
+  const rd=document.getElementById('reader');
+  rd.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+  rd.addEventListener('touchend',e=>{
+    if(sx===null)return;
+    const dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>60)setPage(page+(dx<0?1:-1));
+    sx=null;
+  },{passive:true});
+</script>
+</body>
+</html>
